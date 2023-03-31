@@ -1,4 +1,4 @@
-package programmers.leve1;
+package programmers.level1;
 
 public class BringMiddleChar {
   public String solution(String s) {
