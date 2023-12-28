@@ -3,8 +3,9 @@ package 큐;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayDeque;
 import java.util.Arrays;
-import java.util.LinkedList;
+import java.util.Deque;
 
 public class 풍선터뜨리기 {
 
@@ -17,20 +18,32 @@ public class 풍선터뜨리기 {
 			.mapToInt(Integer::parseInt)
 			.toArray();
 
-		int[] answer = new int[n];
+		StringBuilder sb = new StringBuilder();
 
-		LinkedList<Integer> b = new LinkedList<>();
+		Deque<int[]> b = new ArrayDeque<>();
 
-		for(int i : ballons) {
-			b.add(i);
+		for(int i = 0; i < n; i++) {
+			b.addLast(new int[]{i+1, ballons[i]});
 		}
 
-		int idx = 0;
+		int[] ballon = b.removeFirst();
+		sb.append("1 ");
 
 		while(!b.isEmpty()) {
-			if(b.size() < Math.abs(b.get(idx))) {
-
+			if(ballon[1] > 0) {
+				for(int i = 0; i < ballon[1]; i++) {
+					b.addLast(b.removeFirst()); // 오른쪽으로 회전
+				}
+				ballon = b.removeLast();
+			} else {
+				for(int i = ballon[1]; i < 0; i++) {큐
+					b.addFirst(b.removeLast()); // 왼쪽으로 회전
+				}
+				ballon = b.removeFirst();
 			}
+			sb.append(ballon[0] + " ");
 		}
+
+		System.out.println(sb);
 	}
 }
