@@ -36,7 +36,7 @@ public class 풍선터뜨리기 {
 				}
 				ballon = b.removeLast();
 			} else {
-				for(int i = ballon[1]; i < 0; i++) {큐
+				for(int i = ballon[1]; i < 0; i++) {
 					b.addFirst(b.removeLast()); // 왼쪽으로 회전
 				}
 				ballon = b.removeFirst();
